@@ -9,20 +9,20 @@
       defer
     ></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
-    <script>
+    <script type="module">
+      var lat;
+      var lng;
+      var addr;
       function initialize() {
         var address = document.getElementById("location");
         var autocomplete = new google.maps.places.Autocomplete(address);
         autocomplete.setTypes(["geocode"]);
-        google.maps.event.addListener(
-          autocomplete,
-          "place_changed",
-          function () {
+        google.maps.event.addListener(autocomplete,"place_changed",function () {
             var place = autocomplete.getPlace();
             if (!place.geometry) {
               return;
             }
-
+            
             var address = "";
             if (place.address_components) {
               address = [
@@ -37,17 +37,35 @@
                   "",
               ].join(" ");
             }
-            setCoord("lat", place.geometry.location.lat());
-            setCoord("lng", place.geometry.location.lng());
-            setAddress(address);
-            /*console.log(place.geometry.location.lat());
-            console.log(place.geometry.location.lng());*/
+            console.log(place.geometry.location.lat());
+            console.log(place.geometry.location.lng());
+            //setCoord("lat", place.geometry.location.lat());
+            //setCoord("lng", place.geometry.location.lng());
+            // setAddress(address);
+            lat = place.geometry.location.lat();
+            lng = place.geometry.location.lng();
+            addr = address;
+            // getClosestLocations(lat, lng, addr);
+            
+            /*export { lat };
+            export { lng };
+            export { addr }; */
+            //document.getElementById('lat').innerHTML = place.geometry.location.lat();
+            //document.getElementById('long').innerHTML = place.geometry.location.lng();
           }
         );
       }
 
+      function goToMap() {
+        // check();
+        var url = "locations.html?lat=" + lat + "?lng=" + lng + "?addr=" + addr;
+        location.replace(url);
+      }
       google.maps.event.addDomListener(window, "load", initialize);
+      // document.getElementById("sButton").addEventListener("click", goToMap);
+
     </script>
+    <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" href="stylesheet.css" />
   </head>
   <body>
@@ -64,11 +82,11 @@
     <form action="locations.html">
       <div class="inputs">
       <span class= "radio">
-        <label for="clinic">Womens Clinics</label>
+        <label for="clinic">Women's Clinics</label>
         <input type="radio" name="choice" id="clinic" value="clinic" />
         <label for="help">Help-Lines</label>
         <input type="radio" name="choice" id="help" value="help" />
-        <label for="shelter">Womens Shelters</label>
+        <label for="shelter">Women's Shelters</label>
         <input type="radio" name="choice" id="shelter" value="shelter" />
         </span>
     <br>
@@ -78,25 +96,13 @@
             class="searchBar"
             type="text"
             placeholder="Search..."
-            naom: ;me="location"
+            name="location"
             id="location"
             required
           />
         <span>
-        <button class="searchButton" onclick="check()">Search</button>
+        <button id="sButton" class="searchButton">Search</button>
       </div>
-      <!--<button class="search" onclick="check()">Search</button>
-        <label for="location"> Enter Your Location: </label>
-        <input
-          class="searchBar"
-          type="text"
-          placeholder="Search..."
-          name="location"
-          id="location"
-          required
-        /> -->
-
-      <!-- <button class="search" onclick="check()">Search</button> -->
     </form>
   </body>
 </html>

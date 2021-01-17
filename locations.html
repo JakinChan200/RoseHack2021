@@ -4,7 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feminology</title>
-    <script src="script.js"></script>
+    <script src="script.js">
+      function getURL() {
+        var vars = {};
+        var parts = window.location.href.replace(/[&]+([^=&]+)=([^&]*)/gi,function(m, key, value){
+          vars[key] = value;
+        });
+        return vars;
+      }
+      var lat1 = getURL()["lat"];
+      var lng1 = getURL()["lng"];
+      var addr1 = getURL()["addr"];
+      var endpoint = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCDnuASiiznCjGvpzXijsnA9iaSLZyO2Ow&callback=getClosestLocations(" +
+      lat1 + ", " + lng1 + ", " + addr1 + ")&libraries=places&v=weekly";
+    </script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDnuASiiznCjGvpzXijsnA9iaSLZyO2Ow&callback=getClosestLocations&libraries=places&v=weekly"
       defer
@@ -22,11 +35,7 @@
       <a href="About.html">About</a>
       <a href="Contact.html">Contact</a>
     </div>
-    <h1>
-      Results
-      <div id="lat"></div>
-      <div id="long"></div>
-    </h1>
+    <h1>Results</h1>
 
     <div id="map"></div>
   </body>

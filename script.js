@@ -9,6 +9,10 @@ var addr;
 
 // TODO: get info from form and then replace example
 function getClosestLocations() {
+  //var this_js_script = $('script[src*=index.html]'); // or better regexp to get the file name..
+  // var my_var_1 = this_js_script.attr('data-my_var_1');
+  //import { lat } from "./index.html";
+  // import { window.lat, window.lng, window.addr } from "./index.html";
   createMap();
   var pType = check(); // have if/else assigning pType or separate function
   // var numResults = ...
@@ -38,13 +42,13 @@ function callback(results, status) {
 
 function createMap() {
   infowindow = new google.maps.InfoWindow();
-  var loc = new google.maps.LatLng(lat, lng);
+  var loc = new google.maps.LatLng(0, 0);
   map = new google.maps.Map(document.getElementById("map"), {
     center: loc,
     zoom: 10,
   });
   const request = {
-    query: addr, 
+    query: "San Francisco",
     fields: ["name", "geometry"],
   };
   service = new google.maps.places.PlacesService(map);
@@ -72,8 +76,7 @@ function createMarker(place) {
 function setCoord(coord, num) {
   if (coord == "lat") {
     lat = num;
-  }
-  if (coord == "lng") {
+  } else {
     lng = num;
   }
 }
@@ -134,22 +137,17 @@ function initialize() {
 
 // Returns the closest supported keyword related to the type
 //Next closest Alternatives: "doctor", "drugstore", "pharmacy"
-function check(){
-  if(document.getElementById("clinic").checked){
+function check() {
+  if (document.getElementById("clinic").checked) {
     return "hospital";
-  }else if(document.getElementById("help").checked){
+  } else if (document.getElementById("help").checked) {
     return "police";
-  }else{
+  } else {
     return "lodging";
   }
 }
 
 /*
-    </script>
-    </head>
-    <body>
-<input id="location"
-        placeholder="Enter a location">
-<div id="lat"></div>
-<div id="long"></div>
-*/
+    <div id="lat"></div>
+    <div id="long"></div>
+    */
