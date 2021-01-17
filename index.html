@@ -4,39 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feminology</title>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
     <link rel="stylesheet" href="stylesheet.css" />
   </head>
   <body>
     <div class="menubar">
       <a href="index.html">Home</a>
-      <a href="#Account">Account</a>
-      <a href="#Contact">Contact</a>
+      <a href="About.html">About</a>
+      <a href="Contact.html">Contact</a>
     </div>
     <h1 class="title">Feminology</h1>
-      
-
-    <!--Navigation bar-->
-    <!--<nav class="menubar">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
-    </nav>-->
 
     <h2>Find woman-centric facilities and contacts in your area</h2>
 
     <!--Search box and button-->
     <form action="locations.html">
+      <div class="radio">
+        <label for="clinic">Womens Clinics</label>
+        <input type="radio" name="choice" id="clinic" value="clinic" />
+        <label for="help">Help-Lines</label>
+        <input type="radio" name="choice" id="help" value="help" />
+        <label for="shelter">Womens Shelters</label>
+        <input type="radio" name="choice" id="shelter" value="shelter" />
+      </div>
       <label for="location"> Enter Your Location: </label>
       <input
         class="searchBar"
         type="text"
-        placeholder="   Search..."
+        placeholder="Search..."
         name="location"
-        id="location"
+        id="locat"
+        required
       />
       <button class="search">Search</button>
     </form>
+    <div id="lat"></div>
+    <div id="long"></div>
   </body>
 </html>

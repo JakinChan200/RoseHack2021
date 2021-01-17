@@ -4,29 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feminology</title>
+    <script src="script.js"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=createMap&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDnuASiiznCjGvpzXijsnA9iaSLZyO2Ow&callback=getClosestLocations&libraries=places&v=weekly"
       defer
     ></script>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"
+    ></script>
     <link rel="stylesheet" href="stylesheet.css" />
   </head>
-  <body onload="createMap()">
-    <div id="map"></div>
-    <h1>Results</h1>
+  <body>
     <!--Navigation bar-->
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
-    </nav>
-
-    <!--an alphabetical list of the results-->
-    <ol class="results">
-      <li>Something</li>
-    </ol>
+    <div class="menubar">
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="#Contact">Contact</a>
+    </div>
+    <h1>Results
+      <div id="lat"></div>
+      <div id="long"></div>
+    </h1>
 
     <div id="map"></div>
   </body>

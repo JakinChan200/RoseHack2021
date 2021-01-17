@@ -1,5 +1,7 @@
 #map {
-  height: 100%;
+  height: 70%;
+  width: 90%;
+  margin: auto;
 }
 
 html,
@@ -11,7 +13,9 @@ body {
 
 body {
   text-align: center;
-  background-color: #fae1dd;
+  background-color: #ffffff;
+  background-image: url(leaves.jpg);
+  background-size: cover;
 }
 
 h1 {
@@ -19,6 +23,7 @@ h1 {
   font-size: 80px;
   font-family: "Times New Roman", Times, serif;
   color: white;
+  /* text-shadow: 2px 2px #fae1dd; */
 }
 
 .title {
@@ -26,7 +31,7 @@ h1 {
   border-width: 0.2mm;
   border-color: white;
 }
-
+/*
 nav ul {
   list-style: none;
   position: fixed;
@@ -45,9 +50,10 @@ nav a {
   display: block;
   padding: 14 px 16 px;
   text-align: center;
-}
+}*/
+
 .menubar {
-  background-color: #efd3d7;
+  background-color: #dad7cd;
   overflow: hidden;
   top: 0;
   margin: 0;
@@ -63,14 +69,35 @@ nav a {
 }
 
 .menubar a:hover {
-  background-color: #fec5bb;
+  background-color: #3a5a40;
   color: #e5e5e5;
 }
 
 h2 {
   font-family: "Times New Roman", Times, serif;
-  font-weight: 300;
+  font-weight: 900;
+  color: #344e41;
 }
+p {
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  color: #344e41;
+  background-color: #dad7cd;
+  padding-top: 40px;
+  padding-right: 80px;
+  padding-bottom: 40px;
+  margin: auto;
+  padding-left: 80px;
+  text-align: center;
+  position: absolute;
+  top: 50%
+  width: 100%
+
+  /*border-bottom: 2px solid #344e41;*/
+}
+/* text-shadow: 1px 1px black; */
+
 /*
 .button {
   border: none;
@@ -95,8 +122,18 @@ h2 {
   background-color: rgb(89, 89, 255);
   color: white;
 }*/
+
+.radio label {
+  font-size: 18px;
+  text-shadow: 2px 1px black;
+}
+
 label {
-  font-size: 20px;
+  text-shadow: 3px 3px black;
+  font-size: 40px;
+  line-height: 0px;
+  height: 0px;
+  color: white;
 }
 .search {
   display: inline-block;
