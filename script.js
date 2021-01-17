@@ -3,27 +3,26 @@ var map;
 var service;
 var infowindow;
 var numResults = 5;
-var latitude;
-var longtitude;
+var lat = 0;
+var lng = 0;
+var addr;
 
 // TODO: get info from form and then replace example
 function getClosestLocations() {
   createMap();
-  // var lat = ...
-  // var lng = ...
-  // var pType = ...
+  var pType = check(); // have if/else assigning pType or separate function
   // var numResults = ...
-  const berkeley = new google.maps.LatLng(37.8719, -122.2585);
+  const loc = new google.maps.LatLng(lat, lng);
   infowindow = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map"), {
-    center: berkeley,
+    center: loc,
     zoom: 10,
   });
   service = new google.maps.places.PlacesService(map);
   var req = {
-    location: berkeley,
-    radius: "500",
-    type: ["restaurant"],
+    location: loc,
+    radius: "1000000",
+    type: [pType],
   };
   service.nearbySearch(req, callback);
 }
@@ -39,13 +38,13 @@ function callback(results, status) {
 
 function createMap() {
   infowindow = new google.maps.InfoWindow();
-  const berkeley = new google.maps.LatLng(37.8719, -122.2585);
+  var loc = new google.maps.LatLng(lat, lng);
   map = new google.maps.Map(document.getElementById("map"), {
-    center: berkeley,
+    center: loc,
     zoom: 10,
   });
   const request = {
-    query: "UC Berkeley College of Engineering",
+    query: addr, 
     fields: ["name", "geometry"],
   };
   service = new google.maps.places.PlacesService(map);
@@ -70,7 +69,20 @@ function createMarker(place) {
   });
 }
 
-async function getValues() {
+function setCoord(coord, num) {
+  if (coord == "lat") {
+    lat = num;
+  }
+  if (coord == "lng") {
+    lng = num;
+  }
+}
+
+function setAddress(address) {
+  addr = address;
+}
+
+/* async function getValues() {
   await $.getJSON(
     "https://maps.googleapis.com/maps/api/place/textsearch/xml?query=hospitals+in+San%20Francisco&key=AIzaSyCDnuASiiznCjGvpzXijsnA9iaSLZyO2Ow"
   ),
@@ -85,12 +97,10 @@ async function getValues() {
         console.log(possibleLocations[locationIndex]["geometry"]);
       }
     };
-}
-
-getValues();
-
+} */
+/*
 function initialize() {
-  var address = document.getElementById('locat');
+  var address = document.getElementById('location');
   var autocomplete = new google.maps.places.Autocomplete(address);
   autocomplete.setTypes(["geocode"]);
   google.maps.event.addListener(autocomplete, "place_changed", function () {
@@ -112,15 +122,27 @@ function initialize() {
           place.address_components[2].short_name) ||
           "",
       ].join(" ");
-    }
-    document.getElementById("lat").innerHTML = place.geometry.location.lat();
-    latitude = place.geometry.location.lat();
-    document.getElementById("long").innerHTML = place.geometry.location.lng();
-    longtitude = place.geometry.location.lng();
+    } 
+    document.getElementById("lat").innerHTML = place.geometry.location.lat(); //printing
+    lat = place.geometry.location.lat();
+    document.getElementById("long").innerHTML = place.geometry.location.lng();//printing
+    lng = place.geometry.location.lng();
   });
-}
+}*/
 
-google.maps.event.addDomListener(window, "load", initialize);
+//google.maps.event.addDomListener(window, "load", initialize);
+
+// Returns the closest supported keyword related to the type
+//Next closest Alternatives: "doctor", "drugstore", "pharmacy"
+function check(){
+  if(document.getElementById("clinic").checked){
+    return "hospital";
+  }else if(document.getElementById("help").checked){
+    return "police";
+  }else{
+    return "lodging";
+  }
+}
 
 /*
     </script>
